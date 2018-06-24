@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<title>CoGen</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>CoGen</b></h3>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
+  <span>Hackprague 2018</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>CoGen</b></h1>
+    <hr style="width:50px;border:5px solid blue" class="w3-round">
+  </div>
+
+
+
+  <!-- Generate Smart Contract -->
+  <div class="w3-container" id="contact" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Smart Contract</b></h1>
+    <hr style="width:50px;border:5px solid blue" class="w3-round">
+    <p>Do you agree to these conditions?</p>
+    <div class="row">
+  <div class="col-75">
+    <div class="container">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Legal Contract</h3>
+            <p><label for="fname"><i class="fa fa-user"></i> Address</label>
+            <input type="text" id="fname" name="firstname" placeholder="OX090876578909">
+			<p>Timeframe</p>
+            <p><label for="adr"><i class="fa fa-address-card-o"></i> From</label>
+            <input type="text" id="adr" name="address" placeholder="24.06.2018">
+            <label for="city"><i class="fa fa-institution"></i> To</label>
+            <input type="text" id="city" name="city" placeholder="24.07.2018"></p>
+
+            <p><label for="fname"><i class="fa fa-user"></i> Asset ID</label>
+            <input type="text" id="fname" name="firstname" placeholder="23448754t9gjkd">
+            <label for="email"><i class="fa fa-envelope"></i> Price</label>
+            <input type="text" id="email" name="email" placeholder="50$"></p>
+            <p><label for="fname"><i class="fa fa-user"></i> Address Buyer</label>
+            <input type="text" id="fname" name="firstname" placeholder="0x09375984372093"></p>
+            <a href="last.html"><button id="1" onClick="reply_click(this.id)">Sign</button></a>
+
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">Amine</a></p></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+if (typeof web3 !== 'undefined') {
+    web3 = new Web3(web3.currentProvider);
+} else {
+    // set the provider you want from Web3.providers
+    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
+web3.eth.defaultAccount = "0xCcb12d3D81F75732daA04368e8C8d91c1A88C584";
+var CoursetroContract = web3.eth.contract([
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "pays",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+]);
+var Coursetro = CoursetroContract.at('0xec7c001a0be92ff9e920a7d597855135bc3bbe3d');
+console.log(Coursetro);
+
+function reply_click(clicked_id)
+{
+  Coursetro.pays(
+  {from: web3.eth.defaultAccount,
+  to:"0xec7c001a0be92ff9e920a7d597855135bc3bbe3d",
+  value:  100000000000000000,
+  gas:  300000
+      }, function(err, transactionHash) {
+if (!err)
+  console.log(transactionHash);
+});
+
+}
+
+
+</script>
+
+</body>
+</html>
